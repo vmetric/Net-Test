@@ -1,0 +1,10 @@
+C:\Users\Matt\source\repos\Net Test\Net Test\bin\Debug\Net Test.exe.config
+C:\Users\Matt\source\repos\Net Test\Net Test\bin\Debug\Net Test.exe
+C:\Users\Matt\source\repos\Net Test\Net Test\bin\Debug\Net Test.pdb
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net Test.csprojAssemblyReference.cache
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net_Test.Form1.resources
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net_Test.Properties.Resources.resources
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net Test.csproj.GenerateResource.cache
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net Test.csproj.CoreCompileInputs.cache
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net Test.exe
+C:\Users\Matt\source\repos\Net Test\Net Test\obj\Debug\Net Test.pdb
