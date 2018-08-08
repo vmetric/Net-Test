@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using System.Threading;
 using System.Security.Cryptography;
 
 namespace Net_Test
@@ -23,39 +18,51 @@ namespace Net_Test
         {
             try
             {
-                if(textBox1.Text == "")
+                if (textBox1.Text == "")
                 {
-                    MessageBox.Show("Incorrect Password");
+                    MessageBox.Show("Password cannot be blank");
                     return;
                 }
 
                 WebClient wc = new WebClient();
-                string data = (wc.DownloadString("https://staela.net/files/himom.txt"));
-                data = data.Substring(0, data.Length - 1);
-                string pass = MD5Converter(textBox1.Text); ;
 
-                MessageBox.Show(pass);
-
-                if (data == pass)
-                {
-                    MessageBox.Show("Password Correct");
-                } else
-                {
+                if (SHA256Converter((wc.DownloadString("https://staela.net/files/himom.txt")).Substring(0, (wc.DownloadString("https://staela.net/files/himom.txt")).Length - 1)) == SHA256Converter(MD5Converter(textBox1.Text))) {
+                    Thread t = new Thread(new ThreadStart(() => {
+                        Application.Run(new Form2());
+                    }));
+                    t.Start();
+                    this.Close();
+                } else {
                     MessageBox.Show("Password Incorrect");
+                    textBox1.Text = "";
                 }
 
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
+                MessageBox.Show("Unable to login at this moment.  Please try again later.");
             }
         }
 
-        private String MD5Converter (String text)
+        protected String MD5Converter (String text)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
             md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
             byte[] result = md5.Hash;
             StringBuilder str = new StringBuilder();
-            for (int i =1; i < result.Length; i ++)
+            for (int i =0; i < result.Length; i ++)
+            {
+                str.Append(result[i].ToString("x2"));
+            }
+
+            return str.ToString();
+        }
+
+        protected String SHA256Converter (String text)
+        {
+            SHA256CryptoServiceProvider sha = new SHA256CryptoServiceProvider();
+            sha.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            byte[] result = sha.Hash;
+            StringBuilder str = new StringBuilder();
+            for (int i =0; i < result.Length; i ++)
             {
                 str.Append(result[i].ToString("x2"));
             }
